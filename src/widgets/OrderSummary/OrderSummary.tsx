@@ -1,17 +1,11 @@
-import React from "react";
-import {
-  useCartStore,
-  useCartServices,
-  useCartTotal,
-} from "../../entities/cart/model/cartStore";
+import { type FC } from "react";
+import { useCartServices, useCart } from "../../entities/cart/model/cartStore";
 import type { OrderSummaryProps } from "./types";
 import styles from "./OrderSummary.module.scss";
 
-export const OrderSummary: React.FC<OrderSummaryProps> = ({ onCheckout }) => {
+export const OrderSummary: FC<OrderSummaryProps> = ({ onCheckout }) => {
+  const { clearCart, removeItem, totalPrice: total } = useCart();
   const selectedServices = useCartServices();
-  const total = useCartTotal();
-  const removeItem = useCartStore((state) => state.removeItem);
-  const clearCart = useCartStore((state) => state.clearCart);
 
   return (
     <div className={styles.orderSummary}>

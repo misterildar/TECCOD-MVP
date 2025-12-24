@@ -1,11 +1,13 @@
 import styles from "./App.module.scss";
 import { ServicesPage } from "../pages/ServicesPage";
+import { Header } from "../widgets/Header";
 
 function App() {
   return (
-    <div className={styles.app}>
+    <main className={styles.app}>
+      <Header />
       <ServicesPage />
-    </div>
+    </main>
   );
 }
 

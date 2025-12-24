@@ -1,73 +1,77 @@
-# React + TypeScript + Vite
+# TECCOD-MVP
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+TECCOD-MVP is a modern service selection and ordering platform. It provides a seamless interface for browsing available services, managing a selection basket, and proceeding with service requests.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Service Catalog**: Browse through a curated list of professional services.
+- **Persistent Basket**: Add or remove services from your selection, with automated state persistence across sessions.
+- **Service Details**: Quick view of service information including descriptions and pricing.
+- **Dynamic Order Summary**: Real-time calculation of totals and easy management of selected items.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
+- **Clean Architecture**: Built using a lightweight version of Feature-Sliced Design (FSD) for better maintainability.
 
-## React Compiler
+## 🛠 Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Framework**: [React 19](https://react.dev/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **State Management**: [Zustand](https://github.com/pmndrs/zustand)
+- **Styling**: SCSS (Modules)
+- **Forms**: React Hook Form
 
-## Expanding the ESLint configuration
+## 📦 Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Ensure you have [Node.js](https://nodejs.org/) installed (version 18+ recommended).
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. Clone the repository:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+   ```bash
+   git clone <repository-url>
+   cd TECCOD-MVP
+   ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Running the App
+
+- **Development Mode**:
+
+  ```bash
+  npm run dev
+  ```
+
+  The app will be available at `http://localhost:5173`.
+
+- **Build for Production**:
+
+  ```bash
+  npm run build
+  ```
+
+- **Preview Production Build**:
+  ```bash
+  npm run preview
+  ```
+
+## 🏗 Project Structure
+
+The project follows a "FSD Lite" architecture:
+
+- `src/app/`: App-wide configurations and entry point.
+- `src/pages/`: Main application pages.
+- `src/widgets/`: Complex UI components (e.g., OrderSummary).
+- `src/entities/`: Domain-specific components (e.g., ServiceCard).
+- `src/shared/`: Reusable basic components and styles.
+- `src/styles/`: Global variables, mixins, and base styles.
+
+## 📝 License
+
+This project is private and intended for MVP demonstration purposes.

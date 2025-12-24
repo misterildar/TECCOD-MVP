@@ -1,16 +1,11 @@
-import React from "react";
+import { type FC, useRef, useEffect, type SyntheticEvent } from "react";
 import type { ModalProps } from "./types";
 import styles from "./Modal.module.scss";
 
-export const Modal: React.FC<ModalProps> = ({
-  isOpen,
-  onClose,
-  title,
-  children,
-}) => {
-  const dialogRef = React.useRef<HTMLDialogElement>(null);
+export const Modal: FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
 
@@ -25,7 +20,7 @@ export const Modal: React.FC<ModalProps> = ({
     }
   }, [isOpen]);
 
-  const handleCancel = (event: React.SyntheticEvent) => {
+  const handleCancel = (event: SyntheticEvent) => {
     event.preventDefault();
     onClose();
   };

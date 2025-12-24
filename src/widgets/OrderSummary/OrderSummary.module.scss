@@ -1,9 +1,10 @@
-@use "../../styles/variables" as *;
-@use "../../styles/mixins" as *;
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
 
 .orderSummary {
   @include card-base(24px, 12px, $bg-light);
   height: fit-content;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 }
 
 .orderSummaryHeader {

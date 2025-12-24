@@ -1,7 +1,8 @@
-import React, { useState, useCallback, useMemo } from "react";
-import { useCartStore, useCartTotal } from "../entities/cart/model/cartStore";
+import { type FC, useState, useCallback } from "react";
+import { useCart } from "../entities/cart/model/cartStore";
 import { services } from "../shared/mock/services";
 import { ServiceCard } from "../entities/service/ui/ServiceCard";
+
 export interface Service {
   id: string;
   title: string;
@@ -13,13 +14,8 @@ import { OrderSummary } from "../widgets/OrderSummary";
 import { Modal } from "../shared/ui/Modal";
 import styles from "./ServicesPage.module.scss";
 
-export const ServicesPage: React.FC = () => {
-  const selectedIds = useCartStore((state) => state.selectedIds);
-  const addItem = useCartStore((state) => state.addItem);
-  const clearCart = useCartStore((state) => state.clearCart);
-  const totalPrice = useCartTotal();
-
-  const selectedServiceIds = useMemo(() => new Set(selectedIds), [selectedIds]);
+export const ServicesPage: FC = () => {
+  const { addItem, clearCart, totalPrice, isSelected } = useCart();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -40,14 +36,7 @@ export const ServicesPage: React.FC = () => {
   };
 
   return (
-    <div className={styles.servicesPage}>
-      <header className={styles.servicesPageHeader}>
-        <h1 className={styles.servicesPageTitle}>Дополнительные услуги</h1>
-        <p className={styles.servicesPageSubtitle}>
-          Выберите услуги для вашего полета
-        </p>
-      </header>
-
+    <section className={styles.servicesPage}>
       <div className={styles.servicesPageContent}>
         <div className={styles.servicesPageServicesGrid}>
           {services.map((service) => (
@@ -55,14 +44,14 @@ export const ServicesPage: React.FC = () => {
               key={service.id}
               service={service}
               onAdd={handleAddService}
-              isSelected={selectedServiceIds.has(service.id)}
+              isSelected={isSelected(service.id)}
             />
           ))}
         </div>
 
-        <div className={styles.servicesPageSidebar}>
+        <aside className={styles.servicesPageSidebar}>
           <OrderSummary onCheckout={handleCheckout} />
-        </div>
+        </aside>
       </div>
 
       <Modal
@@ -75,6 +64,6 @@ export const ServicesPage: React.FC = () => {
           Итоговая сумма: <b>{totalPrice.toLocaleString("ru-RU")} ₽</b>
         </p>
       </Modal>
-    </div>
+    </section>
   );
 };

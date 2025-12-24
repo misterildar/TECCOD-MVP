@@ -1,14 +1,14 @@
-import React from "react";
+import { type FC } from "react";
 import type { ServiceCardProps } from "./types";
 import styles from "./ServiceCard.module.scss";
 
-export const ServiceCard: React.FC<ServiceCardProps> = ({
+export const ServiceCard: FC<ServiceCardProps> = ({
   service,
   onAdd,
   isSelected,
 }) => {
   return (
-    <div className={styles.serviceCard}>
+    <article className={styles.serviceCard}>
       <h3 className={styles.serviceCardTitle}>{service.title}</h3>
       <p className={styles.serviceCardPrice}>
         {service.price.toLocaleString("ru-RU")} ₽
@@ -20,6 +20,6 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
       >
         {isSelected ? "Добавлено" : "Добавить"}
       </button>
-    </div>
+    </article>
   );
 };

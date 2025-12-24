@@ -53,3 +53,22 @@ export const useCartTotal = () =>
       0
     )
   );
+
+export const useCart = () => {
+  const selectedIds = useCartStore((state) => state.selectedIds);
+  const addItem = useCartStore((state) => state.addItem);
+  const removeItem = useCartStore((state) => state.removeItem);
+  const clearCart = useCartStore((state) => state.clearCart);
+  const totalPrice = useCartTotal();
+
+  const isSelected = (id: string) => selectedIds.includes(id);
+
+  return {
+    selectedIds,
+    addItem,
+    removeItem,
+    clearCart,
+    totalPrice,
+    isSelected,
+  };
+};
