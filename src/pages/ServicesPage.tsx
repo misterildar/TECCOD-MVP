@@ -1,6 +1,7 @@
-import React, { useState, useCallback } from "react";
-import { services } from "../mock/services";
-import { ServiceCard } from "../components/ServiceCard";
+import React, { useState, useCallback, useMemo } from "react";
+import { useCartStore, useCartTotal } from "../entities/cart/model/cartStore";
+import { services } from "../shared/mock/services";
+import { ServiceCard } from "../entities/service/ui/ServiceCard";
 export interface Service {
   id: string;
   title: string;
@@ -8,21 +9,26 @@ export interface Service {
 }
 
 export type CartItem = Service;
-import { OrderSummary } from "../components/OrderSummary";
-import { Modal } from "../components/Modal";
+import { OrderSummary } from "../widgets/OrderSummary";
+import { Modal } from "../shared/ui/Modal";
 import styles from "./ServicesPage.module.scss";
 
 export const ServicesPage: React.FC = () => {
-  const [selectedServices, setSelectedServices] = useState<CartItem[]>([]);
+  const selectedIds = useCartStore((state) => state.selectedIds);
+  const addItem = useCartStore((state) => state.addItem);
+  const clearCart = useCartStore((state) => state.clearCart);
+  const totalPrice = useCartTotal();
+
+  const selectedServiceIds = useMemo(() => new Set(selectedIds), [selectedIds]);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleAddService = useCallback((service: Service) => {
-    setSelectedServices((prev) => {
-      const exists = prev.find((s) => s.id === service.id);
-      if (exists) return prev;
-      return [...prev, service];
-    });
-  }, []);
+  const handleAddService = useCallback(
+    (service: Service) => {
+      addItem(service.id);
+    },
+    [addItem]
+  );
 
   const handleCheckout = () => {
     setIsModalOpen(true);
@@ -30,13 +36,8 @@ export const ServicesPage: React.FC = () => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    setSelectedServices([]);
+    clearCart();
   };
-
-  const totalPrice = selectedServices.reduce(
-    (sum, service) => sum + service.price,
-    0
-  );
 
   return (
     <div className={styles.servicesPage}>
@@ -54,17 +55,13 @@ export const ServicesPage: React.FC = () => {
               key={service.id}
               service={service}
               onAdd={handleAddService}
-              isSelected={selectedServices.some((s) => s.id === service.id)}
+              isSelected={selectedServiceIds.has(service.id)}
             />
           ))}
         </div>
 
         <div className={styles.servicesPageSidebar}>
-          <OrderSummary
-            selectedServices={selectedServices}
-            total={totalPrice}
-            onCheckout={handleCheckout}
-          />
+          <OrderSummary onCheckout={handleCheckout} />
         </div>
       </div>
 

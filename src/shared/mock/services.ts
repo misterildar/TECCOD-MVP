@@ -1,4 +1,4 @@
-interface Service {
+export interface Service {
   id: string;
   title: string;
   price: number;
@@ -56,3 +56,5 @@ export const services: Service[] = [
     price: 5500,
   },
 ];
+
+export const servicesMap = new Map(services.map((s) => [s.id, s]));
