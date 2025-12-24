@@ -1,0 +1,34 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.serviceCard {
+  @include card-base(16px, 12px, $white);
+  @include flex-column(12px);
+  box-shadow: 0 2px 4px $shadow-sm;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.serviceCardTitle {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.serviceCardPrice {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: $primary;
+}
+
+.serviceCardButton {
+  margin-top: auto;
+  @include button-base($primary, $white);
+  font-size: 14px;
+  font-weight: 500;
+}

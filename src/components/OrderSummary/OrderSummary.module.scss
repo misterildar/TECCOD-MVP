@@ -1,0 +1,54 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.orderSummary {
+  @include card-base(24px, 12px, $bg-light);
+  height: fit-content;
+}
+
+.orderSummaryHeading {
+  margin: 0 0 16px;
+  font-size: 20px;
+}
+
+.orderSummaryList {
+  @include flex-column(8px);
+  margin-bottom: 16px;
+}
+
+.orderSummaryItem {
+  @include flex-between;
+  font-size: 14px;
+  color: $text-secondary;
+}
+
+.orderSummaryEmpty {
+  color: $text-light;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.orderSummaryDivider {
+  height: 1px;
+  background-color: $border-light;
+  margin: 16px 0;
+}
+
+.orderSummaryTotalRow {
+  @include flex-between;
+  margin-bottom: 24px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.orderSummaryTotalPrice {
+  color: $primary;
+  font-size: 22px;
+}
+
+.orderSummaryButton {
+  width: 100%;
+  @include button-base($success, $white, 14px);
+  font-size: 16px;
+  font-weight: 600;
+}

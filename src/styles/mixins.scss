@@ -1,0 +1,48 @@
+@use "./variables" as *;
+
+@mixin flex-column($gap: 0) {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+}
+
+@mixin flex-between($align: center) {
+  display: flex;
+  justify-content: space-between;
+  align-items: $align;
+}
+
+@mixin card-base(
+  $padding: 24px,
+  $radius: 12px,
+  $bg: $white,
+  $border-color: $border
+) {
+  @if $border-color {
+    border: 1px solid $border-color;
+  } @else {
+    border: none;
+  }
+  border-radius: $radius;
+  padding: $padding;
+  background-color: $bg;
+}
+
+@mixin button-base(
+  $bg: $primary,
+  $color: $white,
+  $padding: 10px,
+  $radius: 8px
+) {
+  padding: $padding;
+  background-color: $bg;
+  color: $color;
+  border: none;
+  border-radius: $radius;
+  cursor: pointer;
+
+  &:disabled {
+    background-color: $disabled;
+    cursor: not-allowed;
+  }
+}
