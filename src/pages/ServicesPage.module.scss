@@ -14,14 +14,15 @@
 }
 
 .servicesPageTitle {
-  font-size: 28px;
+  font-size: clamp(20px, 4vw, 28px);
   font-weight: 700;
   margin-bottom: 8px;
+  color: $white;
 }
 
 .servicesPageSubtitle {
-  font-size: 16px;
-  color: $text-muted;
+  font-size: clamp(14px, 2vw, 16px);
+  color: $white;
 }
 
 .servicesPageContent {

@@ -6,6 +6,7 @@ import { servicesMap, type Service } from "../../../shared/mock/services";
 interface CartState {
   selectedIds: string[];
   addItem: (id: string) => void;
+  removeItem: (id: string) => void;
   clearCart: () => void;
 
   hasItem: (id: string) => boolean;
@@ -22,6 +23,10 @@ export const useCartStore = create<CartState>()(
           }
           return { selectedIds: [...state.selectedIds, id] };
         }),
+      removeItem: (id) =>
+        set((state) => ({
+          selectedIds: state.selectedIds.filter((itemId) => itemId !== id),
+        })),
       clearCart: () => set({ selectedIds: [] }),
       hasItem: (id) => get().selectedIds.includes(id),
     }),

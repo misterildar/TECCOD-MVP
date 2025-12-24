@@ -1,9 +1,9 @@
-import "./App.scss";
+import styles from "./App.module.scss";
 import { ServicesPage } from "../pages/ServicesPage";
 
 function App() {
   return (
-    <div className="App">
+    <div className={styles.app}>
       <ServicesPage />
     </div>
   );
