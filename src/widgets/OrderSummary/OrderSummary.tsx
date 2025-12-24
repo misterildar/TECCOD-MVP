@@ -1,7 +1,8 @@
-import { type FC } from "react";
-import { useCartServices, useCart } from "../../entities/cart/model/cartStore";
-import type { OrderSummaryProps } from "./types";
-import styles from "./OrderSummary.module.scss";
+import { type FC } from 'react';
+import { useCartServices, useCart } from '../../entities/cart/model/cartStore';
+import type { OrderSummaryProps } from './types';
+
+import styles from './OrderSummary.module.scss';
 
 export const OrderSummary: FC<OrderSummaryProps> = ({ onCheckout }) => {
   const { clearCart, removeItem, totalPrice: total } = useCart();
@@ -25,11 +26,9 @@ export const OrderSummary: FC<OrderSummaryProps> = ({ onCheckout }) => {
           selectedServices.map((service) => (
             <div key={`${service.id}`} className={styles.orderSummaryItem}>
               <div className={styles.orderSummaryItemInfo}>
-                <span className={styles.orderSummaryItemTitle}>
-                  {service.title}
-                </span>
+                <span className={styles.orderSummaryItemTitle}>{service.title}</span>
                 <span className={styles.orderSummaryItemPrice}>
-                  {service.price.toLocaleString("ru-RU")} ₽
+                  {service.price.toLocaleString('ru-RU')} ₽
                 </span>
               </div>
               <button
@@ -48,9 +47,7 @@ export const OrderSummary: FC<OrderSummaryProps> = ({ onCheckout }) => {
 
       <div className={styles.orderSummaryTotalRow}>
         <span>Общая сумма:</span>
-        <span className={styles.orderSummaryTotalPrice}>
-          {total.toLocaleString("ru-RU")} ₽
-        </span>
+        <span className={styles.orderSummaryTotalPrice}>{total.toLocaleString('ru-RU')} ₽</span>
       </div>
 
       <button

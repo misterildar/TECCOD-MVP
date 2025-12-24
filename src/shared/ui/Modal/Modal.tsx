@@ -1,6 +1,6 @@
-import { type FC, useRef, useEffect, type SyntheticEvent } from "react";
-import type { ModalProps } from "./types";
-import styles from "./Modal.module.scss";
+import { type FC, useRef, useEffect, type SyntheticEvent } from 'react';
+import type { ModalProps } from './types';
+import styles from './Modal.module.scss';
 
 export const Modal: FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
   const dialogRef = useRef<HTMLDialogElement>(null);

@@ -1,6 +1,7 @@
-import styles from "./App.module.scss";
-import { ServicesPage } from "../pages/ServicesPage";
-import { Header } from "../widgets/Header";
+import { ServicesPage } from '../pages/ServicesPage';
+import { Header } from '../widgets/Header';
+
+import styles from './App.module.scss';
 
 function App() {
   return (

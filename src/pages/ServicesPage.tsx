@@ -1,18 +1,13 @@
-import { type FC, useState, useCallback } from "react";
-import { useCart } from "../entities/cart/model/cartStore";
-import { services } from "../shared/mock/services";
-import { ServiceCard } from "../entities/service/ui/ServiceCard";
+import { type FC, useState, useCallback } from 'react';
 
-export interface Service {
-  id: string;
-  title: string;
-  price: number;
-}
+import { useCart } from '../entities/cart/model/cartStore';
+import { services } from '../shared/mock/services';
+import { ServiceCard } from '../entities/service/ui/ServiceCard';
+import { OrderSummary } from '../widgets/OrderSummary';
+import { Modal } from '../shared/ui/Modal';
+import type { Service } from '../entities/service/model/types';
 
-export type CartItem = Service;
-import { OrderSummary } from "../widgets/OrderSummary";
-import { Modal } from "../shared/ui/Modal";
-import styles from "./ServicesPage.module.scss";
+import styles from './ServicesPage.module.scss';
 
 export const ServicesPage: FC = () => {
   const { addItem, clearCart, totalPrice, isSelected } = useCart();
@@ -23,7 +18,7 @@ export const ServicesPage: FC = () => {
     (service: Service) => {
       addItem(service.id);
     },
-    [addItem]
+    [addItem],
   );
 
   const handleCheckout = () => {
@@ -54,14 +49,10 @@ export const ServicesPage: FC = () => {
         </aside>
       </div>
 
-      <Modal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        title="Заказ оформлен!"
-      >
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal} title="Заказ оформлен!">
         <p>Ваши услуги успешно добавлены к заказу.</p>
         <p>
-          Итоговая сумма: <b>{totalPrice.toLocaleString("ru-RU")} ₽</b>
+          Итоговая сумма: <b>{totalPrice.toLocaleString('ru-RU')} ₽</b>
         </p>
       </Modal>
     </section>

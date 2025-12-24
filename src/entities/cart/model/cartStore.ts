@@ -1,7 +1,8 @@
-import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
-import { useShallow } from "zustand/react/shallow";
-import { servicesMap, type Service } from "../../../shared/mock/services";
+import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
+import { useShallow } from 'zustand/react/shallow';
+import { servicesMap } from '../../../shared/mock/services';
+import type { Service } from '../../service/model/types';
 
 interface CartState {
   selectedIds: string[];
@@ -31,7 +32,7 @@ export const useCartStore = create<CartState>()(
       hasItem: (id) => get().selectedIds.includes(id),
     }),
     {
-      name: "cart-storage",
+      name: 'cart-storage',
       storage: createJSONStorage(() => localStorage),
     }
   )

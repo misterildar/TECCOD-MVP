@@ -1,5 +1,5 @@
-import { type FC } from "react";
-import styles from "./PageHeader.module.scss";
+import { type FC } from 'react';
+import styles from './PageHeader.module.scss';
 
 interface PageHeaderProps {
   title: string;

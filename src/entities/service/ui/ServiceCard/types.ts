@@ -1,8 +1,4 @@
-interface Service {
-  id: string;
-  title: string;
-  price: number;
-}
+import type { Service } from '../../model/types';
 
 export interface ServiceCardProps {
   service: Service;
