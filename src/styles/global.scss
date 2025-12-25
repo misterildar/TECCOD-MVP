@@ -2,9 +2,23 @@ html,
 body {
   min-height: 100vh;
   margin: 0;
-  background-image: url("/background.svg");
+  background-image: url('/background.svg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
+}
+
+@supports (-webkit-overlay-scrollbars: 0) {
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
+}
+@supports not (-webkit-overlay-scrollbars: 0) {
+  html {
+    scrollbar-gutter: stable;
+  }
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
 }

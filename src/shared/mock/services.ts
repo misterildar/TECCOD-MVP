@@ -53,4 +53,4 @@ export const services: Service[] = [
   },
 ];
 
-export const servicesMap = new Map(services.map((s) => [s.id, s]));
+export const servicesMap = new Map(services.map((service) => [service.id, service]));
